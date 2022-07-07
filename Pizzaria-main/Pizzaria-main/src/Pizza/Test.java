@@ -2,8 +2,14 @@ package Pizza;
 import java.util.Scanner;
 public class Test {
     public static void main(String[] args) {
-        PizzaPrice pp = new PizzaPrice();
         NameNumber nb = new NameNumber();
+        CallPortuguese a = new CallPortuguese();
+        CallPeperoni b = new CallPeperoni();
+        CallCheese c = new CallCheese();
+
+        Portuguese p1 = new Portuguese();
+        Pepperoni p2 = new Pepperoni();
+        Cheese p3 = new Cheese();
 
         System.out.println(
                 "Welcome to Sam's Pizzeria! \n " +
@@ -13,63 +19,81 @@ public class Test {
         Scanner fv = new Scanner(System.in);
         int vf = fv.nextInt();
 
-        switch (vf){
-            case 1 ->{
-        System.out.println("""
-                ____________________________ \n
-                Choose your Pizza flavor:\s
-                tap 0 to Cancel!!!\s
-                1- Portuguese 2- Pepperoni 3- Cheese
-                """);
-        CallPortuguese a = new CallPortuguese();
-        CallPeperoni b = new CallPeperoni();
-        CallCheese c = new CallCheese();
-
-        Scanner sc0 = new Scanner(System.in);
-        int esc = sc0.nextInt();
-        switch (esc) {
-            case 1 -> {a.callPizzaPortuguese();}
-            case 2 -> {b.callPizzaPepperoni();}
-            case 3 -> {c.callPizzaCheese();}
-        }
-    }
-            case 2 ->{
+        switch (vf) {
+            case 1 -> {
                 System.out.println("""
-                ____________________________ \n
-                Choose your Pizza flavor one:\s
-                tap 0 to Cancel!!!\s
-                1- Portuguese 2- Pepperoni 3- Cheese
-                """);
+                        ____________________________ \n
+                        Choose your Pizza flavor:\s
+                        tap 0 to Cancel!!!\s
+                        1- Portuguese 2- Pepperoni 3- Cheese
+                        """);
+                Scanner sc0 = new Scanner(System.in);
+                int esc = sc0.nextInt();
+                switch (esc) {
+                    case 1 -> {
+                        a.callPizzaPortuguese();
+                        a.PaymentPortuguese();
+                    }
+                    case 2 -> {
+                        b.callPizzaPepperoni();
+                        b.PaymentPepperoni();
+                    }
+                    case 3 -> {
+                        c.callPizzaCheese();
+                        c.PaymentCheese();
+                    }
+                }
+            }
+            case 2 -> {
+                System.out.println("""
+                        ____________________________ \n
+                        Choose your Pizza flavor one:\s
+                        tap 0 to Cancel!!!\s
+                        1- Portuguese 2- Pepperoni 3- Cheese
+                        """);
                 Scanner pz1 = new Scanner(System.in);
                 int esc = pz1.nextInt();
-                switch (esc){
-                    case  1 -> {Portuguese a = new Portuguese();
-                    a.PrintPortuguese();}
-                    case  2 -> {Pepperoni a = new Pepperoni();
-                        a.PrintPepperoni();}
-                    case  3 -> {Cheese a = new Cheese();
-                        a.PrintCheese();}
-                    default -> {System.out.println("Invalid Number");}
-                }
-                System.out.println("""
-                ____________________________ \n
-                Choose your Pizza flavor two:\s
-                tap 0 to Cancel!!!\s
-                1- Portuguese 2- Pepperoni 3- Cheese
-                """);
 
+                System.out.println("""
+                        ____________________________ \n
+                        Choose your Pizza flavor two:\s
+                        tap 0 to Cancel!!!\s
+                        1- Portuguese 2- Pepperoni 3- Cheese
+                        """);
                 Scanner pz2 = new Scanner(System.in);
                 int esc2 = pz2.nextInt();
-                switch (esc2){
-                    case  1 -> {Portuguese a = new Portuguese();
-                        a.PrintPortuguese();}
-                    case  2 -> {Pepperoni a = new Pepperoni();
-                        a.PrintPepperoni();}
-                    case  3 -> {Cheese a = new Cheese();
-                        a.PrintCheese();}
-                    default -> {System.out.println("Invalid Number");}
+                if (esc == 1 && esc2 == 2) {
+                    System.out.println("Selected Portuguese and Pepperoni...");
+                    p1.PrintPortuguese();
+                    p2.PrintPepperoni();
+                    b.PaymentPepperoni();
                 }
-                System.out.println("Selected: "+ esc +" and "+esc2);
+                if (esc == 1 && esc2 == 3) {System.out.println("Selected Portuguese and Cheese...");
+                    p1.PrintPortuguese();
+                    p3.PrintCheese();
+                    a.PaymentPortuguese();
+                }
+                if (esc == 2 && esc2 == 1) {System.out.println("Selected Pepperoni and Portuguese...");
+                    p2.PrintPepperoni();
+                    p1.PrintPortuguese();
+                    b.PaymentPepperoni();
+                }
+                if (esc == 2 && esc2 == 3) {System.out.println("Selected Pepperoni and Cheese...");
+                    p2.PrintPepperoni();
+                    p3.PrintCheese();
+                    b.PaymentPepperoni();
+                }
+                if (esc == 3 && esc2 == 1) {System.out.println("Selected Cheese and Portuguese");
+                    p3.PrintCheese();
+                    p1.PrintPortuguese();
+                    a.PaymentPortuguese();
+                }
+                if (esc == 3 && esc2 == 2) {System.out.println("Selected Cheese and Pepperoni");
+                    p3.PrintCheese();
+                    p2.PrintPepperoni();
+                    b.PaymentPepperoni();
+                }
             }
-            default -> {System.out.println("We don't make more than 2 flavors ... Sorry :/");}
-    }}}
+        }
+    }
+}

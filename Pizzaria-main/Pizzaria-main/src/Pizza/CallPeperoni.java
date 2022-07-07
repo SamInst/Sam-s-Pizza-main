@@ -1,16 +1,17 @@
 package Pizza;
+import java.util.Objects;
 import java.util.Scanner;
 public class CallPeperoni {
     public void callPizzaPepperoni() {
-        NameNumber nb = new NameNumber();
-
         Pepperoni p1 = new Pepperoni();
+        System.out.println("Selected Pepperoni...");
+        p1.PrintPepperoni();
+    }
+    public void PaymentPepperoni(){
+        NameNumber nb = new NameNumber();
         PizzaPrice pp = new PizzaPrice();
         ConfirmBuy cb = new ConfirmBuy();
 
-
-        System.out.println("Selected Pepperoni...");
-        p1.PrintPepperoni();
         System.out.println("""
                 Select the form of payment...
                 Money(1)
@@ -24,17 +25,18 @@ public class CallPeperoni {
                         "Pizza Price: " + pp.getPricePepperoni()   + "\n" +
                         "Delivery price: " + pp.getPriceDelivery() + "\n" +
                         "Total Value: " + sum);
-                cb.CallConfirmBuy();
-                if (cb.equals(true)) {
-                System.out.println("### Invoice: ### ");
-                System.out.println("Client Name: ");
-                nb.CallName();
-                System.out.println("Phone Number: ");
-                nb.CallNumber();
-                System.out.println("Pizza Price: " + pp.getPricePepperoni() + "\n" +
-                        "Delivery price: " + pp.getPriceDelivery()          + "\n" +
-                        "Total Value: " + sum + "\n--------------------");
-            }}
+
+                if (cb.CallConfirmBuy()) {
+                    System.out.println("### Invoice: ### ");
+                    System.out.println("Client Name: ");
+                    nb.CallName();
+                    System.out.println("Phone Number: ");
+                    nb.CallNumber();
+                    System.out.println("Pizza Price: " + pp.getPricePepperoni() + "\n" +
+                            "Delivery price: " + pp.getPriceDelivery()          + "\n" +
+                            "Total Value: " + sum + "\n--------------------");
+                }
+            }
             case 2 -> {
                 float sum = pp.getPricePepperoni() + pp.getPriceDelivery() + pp.getPriceCardInterest();
                 System.out.println(" Selected Credit Card..."        + "\n" +
@@ -45,15 +47,15 @@ public class CallPeperoni {
                 );
                 cb.CallConfirmBuy();
                 if (cb.equals(true)) {
-                    System.out.println("Invoice: " + "\n");
-                    System.out.print("Client name: "); nb.CallName();
-                    System.out.print("Phone Number"); nb.CallNumber();
-                    System.out.println(
-                            "Pizza Price: " + pp.getPricePepperoni()             + "\n" +
-                                    "Delivery price: " + pp.getPriceDelivery()   + "\n" +
-                                    "CardInterest: " + pp.getPriceCardInterest() + "\n" +
-                                    "Total Value: " + sum + "\n" +
-                                    "--------------------");
+                System.out.println("### Invoice: ###" + "\n");
+                System.out.print("Client name: "); nb.CallName();
+                System.out.print("Phone Number: "); nb.CallNumber();
+                System.out.println(
+                    "Pizza Price: " + pp.getPricePepperoni()     + "\n" +
+                    "Delivery price: " + pp.getPriceDelivery()   + "\n" +
+                    "CardInterest: " + pp.getPriceCardInterest() + "\n" +
+                    "Total Value: " + sum + "\n" +
+                    "--------------------");
                 }
             }
         }
